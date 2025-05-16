@@ -7,4 +7,4 @@ module.exports = new Pool({
   database: process.env.DATABASE,
   password: process.env.DB_PSW,
   port: 5432 // The default port
-});
+})
