@@ -1,15 +1,48 @@
-require("dotenv").config()
+const express = require("express")
+const session = require("express-session")
+const passport = require("passport")
+const bcryptjs = require("bcryptjs")
+
+const PGStore = require('connect-pg-simple')(session)
 
 const pool = require("./db/pool")
 const db = require("./db/queries")
 
-const express = require("express")
-const session = require("express-session")
-const passport = require("passport")
-const LocalStrategy = require('passport-local').Strategy
-const bcryptjs = require("bcryptjs")
+// ----- GENERAL SETUP -----
 
+require("dotenv").config()
+
+// Create express application
 const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
+// ----- SESSION SETUP ------
+
+// We need to create the "session" table in our database. psql <mydatabase> < node_modules/connect-pg-simple/table.sql
+const sessionStore = new PGStore({
+  pool : pool
+})
+
+app.use(session({  // Session has data stored in the server
+  secret: process.env.SECRET, 
+  resave: false, 
+  saveUninitialized: true,
+  store: sessionStore, 
+  cookie: { // Cookie has data stored in the browser
+    maxAge: 1000 * 60 * 60 * 24 // Equals 1 day
+  }
+}))
+
+
+const LocalStrategy = require('passport-local').Strategy
+
+
+
+
+
+
 
 // VIEWS
 const path = require("node:path")
@@ -17,9 +50,10 @@ app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
 
 
-app.use(session({ secret: "cats", resave: false, saveUninitialized: false }))
+
 app.use(passport.session())
-app.use(express.urlencoded({ extended: false }))
+
+
 
 app.use((err, req, res, next) => {
   console.error(err)
