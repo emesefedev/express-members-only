@@ -1,10 +1,10 @@
 const pool = require("./pool")
 
 // membershipStatus = "normal" | "premium" | "admin"
-async function insertUser(username, firstName, lastName, password, membersipStatus = "normal") {
+async function insertUser(username, firstName, lastName, password, salt, membersipStatus = "normal") {
   await pool.query(
-    "INSERT INTO users (username, first_name, last_name, password, membership_status) VALUES ($1, $2, $3, $4, $5)", 
-    [username, firstName, lastName, password, membersipStatus])
+    "INSERT INTO users (username, first_name, last_name, password, salt, membership_status) VALUES ($1, $2, $3, $4, $5, $6)", 
+    [username, firstName, lastName, password, salt, membersipStatus])
 }
 
 async function getUserFromUsername(username) {
