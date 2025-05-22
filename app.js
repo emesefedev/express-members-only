@@ -5,7 +5,6 @@ const passport = require("passport")
 const PGStore = require('connect-pg-simple')(session)
 
 const pool = require("./db/pool")
-const db = require("./db/queries")
 const routes = require("./routes")
 
 // ----- GENERAL SETUP -----

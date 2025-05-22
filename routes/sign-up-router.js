@@ -7,7 +7,11 @@ const { validateUser } = require("../controllers/usersController")
 const signUpRouter = Router()
 
 signUpRouter.get("/", async (req, res) => {
-  res.render("sign-up", { title: "Sign Up" })
+  if (!req.isAuthenticated()) {
+    res.render("sign-up", { title: "Sign Up" })
+  } else {
+    res.redirect("/")
+  }
 })
 
 signUpRouter.post("/", [validateUser, async (req, res, next) => {

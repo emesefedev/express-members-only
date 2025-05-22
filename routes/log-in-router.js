@@ -4,7 +4,11 @@ const passport = require("passport")
 const logInRouter = Router()
 
 logInRouter.get("/", async (req, res) => {
-  res.render("log-in", { title: "Log In" })
+  if (!req.isAuthenticated()) {
+    res.render("log-in", { title: "Log In" })
+  } else {
+    res.redirect("/messages")
+  }
 })
 
 logInRouter.post("/", 

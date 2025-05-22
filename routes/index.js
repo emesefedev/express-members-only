@@ -12,7 +12,12 @@ router.use("/messages", messagesRouter)
 
 
 router.get("/", (req, res) => {
+  if (!req.isAuthenticated()) {
     res.render("index", { title: "Members Only" })
+  } else {
+    res.redirect("/messages")
+  }
+    
 })
 
 module.exports = router

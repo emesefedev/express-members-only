@@ -3,8 +3,8 @@ const { isAuthenticated } = require("../utilities/authMiddleware")
 
 const messagesRouter = Router()
 
-messagesRouter.get("/", isAuthenticated, (req, res, next) => {
-  res.render("messages", { title: "Messages", user: req.user, isAuthenticated: req.isAuthenticated() })
+messagesRouter.get("/", isAuthenticated, (req, res ) => {
+  res.render("messages", { title: "Messages", user: req.user })
 })
 
 module.exports = messagesRouter
