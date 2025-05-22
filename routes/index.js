@@ -12,7 +12,7 @@ router.use("/messages", messagesRouter)
 
 
 router.get("/", (req, res) => {
-    res.render("index", { title: "Home" })
+    res.render("index", { title: "Members Only" })
 })
 
 module.exports = router

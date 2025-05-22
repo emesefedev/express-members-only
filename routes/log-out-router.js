@@ -1,8 +1,9 @@
 const { Router } = require("express")
+const { isAuthenticated } = require("../utilities/authMiddleware")
 
 const logOutRouter = Router()
 
-logOutRouter.get("/", (req, res, next) => {
+logOutRouter.get("/", isAuthenticated, (req, res, next) => {
   req.logout((err) => {
     if (err) {
       return next(err)

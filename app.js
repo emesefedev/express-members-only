@@ -48,17 +48,22 @@ require("./config/passport")
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use((req, res, next) => {
+  console.log(req.session)
+  console.log(req.user)
+  next()
+})
 
+// ----- ROUTES ------
 
+app.use(routes) 
+
+// ----- ERROR MIDDLEWARE ------
 
 app.use((err, req, res, next) => {
   console.error(err)
   res.status(err.statusCode || 500).send(err.message)
 })
-
-// ----- ROUTES ------
-
-app.use(routes) // TODO: Comprobar que funciona
 
 // ----- SERVER ------
 

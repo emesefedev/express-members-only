@@ -5,13 +5,7 @@
   <body>
     <h1> <%= title %> </h1>
 
-    <% if (locals.user) {%>
-      <h2>WELCOME BACK <%= user.first_name %> <%= user.last_name %></h2>
-      <a href="/log-out">LOG OUT</a>
-    <% } else { %>
-      <p>
-        Please <a href="/log-in">log in</a> or <a href="/sign-up">sign up</a>.
-      </p>
-    <%}%>
+    <h2>WELCOME BACK <%= user.first_name %> <%= user.last_name %></h2>
+    <a href="/log-out">LOG OUT</a>
   </body>
 </html>
