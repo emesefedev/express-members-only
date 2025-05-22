@@ -17,8 +17,15 @@ async function getUserFromID(id) {
   return rows[0]
 }
 
+async function getAllUsernames() {
+  const { rows } = await pool.query("SELECT username FROM users")
+  console.log(rows)
+  return rows
+}
+
 module.exports = {
   insertUser,
   getUserFromUsername,
-  getUserFromID
+  getUserFromID,
+  getAllUsernames
 }
