@@ -5,7 +5,7 @@ const passwordMinLength = 8
 
 const usernameExistsError = "Username already exists"
 const emptyNameError = "must not be empty"
-const passwordMinLengthError = "Password must have at least 6 characters"
+const passwordMinLengthError = `Password must have at least ${passwordMinLength} characters`
 const passwordContainsError = 
   "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
 const equalPasswordsError = "Passwords must be equal"
@@ -28,7 +28,7 @@ const validateUser = [
 
   // ----- PASSWORDS -----
   body("password").trim().notEmpty()
-    .isLength({ min: 6 }).withMessage(passwordMinLengthError)
+    .isLength({ min: passwordMinLength }).withMessage(passwordMinLengthError)
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])/).withMessage(passwordContainsError),
 
   body("confirm-password").custom((value, {req}) => {
