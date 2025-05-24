@@ -23,9 +23,16 @@ async function getAllUsernames() {
   return rows
 }
 
+async function getAllUsernamesAndMembershipStatus() {
+  const { rows } = await pool.query("SELECT username, membership_status  FROM users")
+  console.log(rows)
+  return rows
+}
+
 module.exports = {
   insertUser,
   getUserFromUsername,
   getUserFromID,
-  getAllUsernames
+  getAllUsernames,
+  getAllUsernamesAndMembershipStatus
 }
