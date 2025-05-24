@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head', {title: title}) %>
+  
+  <body class="bg-[#1b1616] m-4">
+    <h1 class="text-5xl text-[#5477b2] mb-4"> <%= title %> </h1>
+
+    <div class="grid grid-cols-3 gap-4 p-4"">
+      <% for(i=0; i < members.length; i++) {%>
+        
+        <p class="text-[#dcdcdc]"><%= members[i].username %></p>
+        <p class="text-[#dcdcdc]">[ ROLE ]</p>
+        <button class="text-[#f37748] border-1 border-[#f37748] hover:text-[#aa5632] hover:border-1 hover:border-[#aa5632] rounded-md w-6 h-6"> 
+          <%- include('partials/trash') %>
+        </button>
+        
+      <% } %>
+    </div>
+  </body>
+</html>
