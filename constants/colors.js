@@ -4,5 +4,6 @@ const colors = {
   error: "#f37748",
   errorDark: "#aa5632",
   main: "#5477b2",
-  secondary: "#498467"
+  secondary: "#498467",
+  mainDark: "#3b627d"
 }
