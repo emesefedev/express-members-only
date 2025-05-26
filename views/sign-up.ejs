@@ -3,7 +3,7 @@
   <%- include('partials/head', {title: title}) %>
   
   <body>
-    <h1> <%= title %> </h1>
+    <%- include('partials/title', {title: title}) %>
     
     <form action="/sign-up" method="POST">
       <label for="username">Username</label>

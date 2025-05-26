@@ -2,17 +2,38 @@
 <html lang="en">
   <%- include('partials/head', {title: title}) %>
   
-  <body>
-    <h1> <%= title %> </h1>
+  <body class="bg-[#1b1616] m-4">
+    <%- include('partials/title', {title: title}) %>
     
     <form action="/log-in" method="POST">
-      <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" />
+      <div class="flex flex-col gap-4 w-64">
+        <div class="flex flex-col gap-1">
+          <label for="username" class="text-[#dcdcdc]">Username</label>
+          <input 
+            id="username" 
+            name="username" 
+            placeholder="username" 
+            type="text" 
+            class="text-[#dcdcdc] border-1 border-[#dcdcdc] rounded-md p-1"
+          />
+        </div>
+        
+        <div class="flex flex-col gap-1">
+          <label for="password" class="text-[#dcdcdc]">Password</label>
+          <input 
+            id="password" 
+            name="password" 
+            type="password" 
+            class="text-[#dcdcdc] border-1 border-[#dcdcdc] rounded-md p-1"
+          />
+        </div>
       
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" />
-      
-      <button type="submit">Log In</button>
+      <button 
+        type="submit" 
+        class="text-[#5477b2] border-1 border-[#5477b2] hover:text-[#3b627d] hover:border-[#3b627d] rounded-md w-32">
+        Log In
+      </button>
+      </div>
     </form>
   </body>
 </html>
