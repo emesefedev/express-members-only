@@ -37,11 +37,22 @@ async function deleteUserByID(id) {
   console.log(`User with id ${id} deleted`)
 }
 
+async function updateUserMembershipStatusByID(id, status) {
+  const user = getUserByID(id)
+  if (!user) {
+    throw new Error(`Trying to update inexistent user with id ${id}`)
+  }
+
+  await pool.query("UPDATE users SET membership_status = $1 WHERE id = $2", [status, id])
+  console.log(`User with id ${id} updated`)
+}
+
 module.exports = {
   insertUser,
   getUserFromUsername,
   getUserByID,
   getAllUsernames,
   getAllUsersPublicInfo,
-  deleteUserByID
+  deleteUserByID,
+  updateUserMembershipStatusByID
 }

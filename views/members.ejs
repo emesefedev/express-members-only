@@ -14,14 +14,29 @@
       <% for(i=1; i < members.length; i++) {%>
         
         <p class="text-[#dcdcdc]"> <%= members[i].username %> </p>
+        
         <p class="text-[#dcdcdc]"> <%= members[i].membership_status %> </p>
-        <button 
-          class="text-[#f37748] border-1 border-[#f37748] 
-                 hover:text-[#aa5632] hover:border-1 hover:border-[#aa5632] 
-                rounded-md w-6 h-6"
-          onclick="deleteUser(<%= members[i].id %>)"> 
-          <%- include('partials/trash') %>
-        </button>
+        
+        <div class="flex align-center gap-4">
+        <% if (currentAdmin.username !== members[i].username ) {%>
+          <%  const newStatus = (members[i].membership_status === "admin") ? "normal" : "admin" %>
+          <button 
+            class="text-[#02c39a] border-1 border-[#02c39a] 
+                  hover:text-[#01887b] hover:border-[#01887b] 
+                  rounded-md w-6 h-6"
+            onclick="updateUserMembershipStatus(<%= members[i].id %>, '<%= newStatus %>')"> 
+            <%- include('partials/edit') %>
+          </button>
+          
+          <button 
+            class="text-[#f37748] border-1 border-[#f37748] 
+                  hover:text-[#aa5632] hover:border-[#aa5632] 
+                  rounded-md w-6 h-6"
+            onclick="deleteUser(<%= members[i].id %>)"> 
+            <%- include('partials/trash') %>
+          </button>
+        <% } %>
+        </div>
         
       <% } %>
     </div>
@@ -42,7 +57,24 @@
         location.reload()
       }
     } catch (error) {
-      alert(error);
+      alert(error)
+    }
+  }
+
+  async function updateUserMembershipStatus(id, status) {
+    console.log(`frontend ${id}, ${status}`)
+    try {
+      const response = await fetch(`/members/update/${id}/${status}`, {
+        method: 'POST',
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        location.reload()
+      }
+    } catch (error) {
+      alert(error)
     }
   }
 </script>
