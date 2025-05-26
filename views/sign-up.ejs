@@ -2,26 +2,74 @@
 <html lang="en">
   <%- include('partials/head', {title: title}) %>
   
-  <body>
+  <body class="bg-[#1b1616] m-4">
     <%- include('partials/title', {title: title}) %>
     
     <form action="/sign-up" method="POST">
-      <label for="username">Username</label>
-      <input id="username" name="username" placeholder="username" type="text" />
-      
-      <label for="first_name">First Name</label>
-      <input id="first_name" name="first_name" placeholder="First Name" type="text" />
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="username" class="text-[#dcdcdc]">Username</label>
+            <input 
+              id="username" 
+              name="username" 
+              placeholder="username" 
+              type="text" 
+              class="text-[#dcdcdc] border-1 border-[#dcdcdc] rounded-md p-1"
+            />
+          </div>
 
-      <label for="last_name">Last Name</label>
-      <input id="last_name" name="last_name" placeholder="Last Name" type="text" />
-      
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" />
+          <div class="flex flex-col gap-1">
+            <label for="first_name" class="text-[#dcdcdc]">First Name</label>
+            <input 
+              id="first_name" 
+              name="first_name" 
+              placeholder="First Name" 
+              type="text"
+              class="text-[#dcdcdc] border-1 border-[#dcdcdc] rounded-md p-1"
+            />
+          </div> 
+          
+          <div class="flex flex-col gap-1">
+            <label for="last_name" class="text-[#dcdcdc]">Last Name</label>
+            <input 
+              id="last_name" 
+              name="last_name" 
+              placeholder="Last Name" 
+              type="text"
+              class="text-[#dcdcdc] border-1 border-[#dcdcdc] rounded-md p-1"
+            />
+          </div>
+        </div>
+        
+        <div class="flex gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="password" class="text-[#dcdcdc]">Password</label>
+            <input 
+              id="password" 
+              name="password" 
+              type="password" 
+              class="text-[#dcdcdc] border-1 border-[#dcdcdc] rounded-md p-1"
+            />
+          </div>
 
-      <label for="confirm-password">Confirm Password</label>
-      <input id="confirm-password" name="confirm-password" type="password" />
-      
-      <button type="submit">Sign Up</button>
+          <div class="flex flex-col gap-1">
+            <label for="confirm-password" class="text-[#dcdcdc]">Confirm Password</label>
+            <input 
+              id="confirm-password" 
+              name="confirm-password" 
+              type="password"
+              class="text-[#dcdcdc] border-1 border-[#dcdcdc] rounded-md p-1"
+            />
+          </div>
+        </div>
+        
+        <button 
+        type="submit" 
+        class="text-[#5477b2] border-1 border-[#5477b2] hover:text-[#3b627d] hover:border-[#3b627d] rounded-md w-32">
+          Sign Up
+        </button>
+      </div>
     </form>
 
     <%- include("partials/errors.ejs") %>
