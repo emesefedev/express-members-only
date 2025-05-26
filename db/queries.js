@@ -12,20 +12,47 @@ async function getUserFromUsername(username) {
   return rows[0]
 }
 
-async function getUserFromID(id) {
+async function getUserByID(id) {
   const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id])
   return rows[0]
 }
 
 async function getAllUsernames() {
   const { rows } = await pool.query("SELECT username FROM users")
-  console.log(rows)
   return rows
+}
+
+async function getAllUsersPublicInfo() {
+  const { rows } = await pool.query("SELECT id, username, first_name, last_name, membership_status  FROM users")
+  return rows
+}
+
+async function deleteUserByID(id) {
+  const user = getUserByID(id)
+  if (!user) {
+    throw new Error(`Trying to delete inexistent user with id ${id}`)
+  }
+
+  await pool.query("DELETE FROM users WHERE id = $1", [id])
+  console.log(`User with id ${id} deleted`)
+}
+
+async function updateUserMembershipStatusByID(id, status) {
+  const user = getUserByID(id)
+  if (!user) {
+    throw new Error(`Trying to update inexistent user with id ${id}`)
+  }
+
+  await pool.query("UPDATE users SET membership_status = $1 WHERE id = $2", [status, id])
+  console.log(`User with id ${id} updated`)
 }
 
 module.exports = {
   insertUser,
   getUserFromUsername,
-  getUserFromID,
-  getAllUsernames
+  getUserByID,
+  getAllUsernames,
+  getAllUsersPublicInfo,
+  deleteUserByID,
+  updateUserMembershipStatusByID
 }

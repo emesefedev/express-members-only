@@ -2,10 +2,15 @@
 <html lang="en">
   <%- include('partials/head', {title: title}) %>
   
-  <body>
-    <h1> <%= title %> </h1>
+  <body class="bg-[#1b1616] m-4">
+    <%- include('partials/title', {title: title}) %>
 
-    <h2>WELCOME BACK <%= user.first_name %> <%= user.last_name %></h2>
-    <a href="/log-out">LOG OUT</a>
+    <h2 class="text-[#dcdcdc] text-xl">
+      Welcome back, 
+      <span class="text-[#5477b2]"> 
+        <%= capitalize(user.first_name) %> <%= capitalize(user.last_name) %> 
+      </span>
+    </h2>
+    <a href="/log-out" class="text-[#5477b2] underline">Log out</a>
   </body>
 </html>

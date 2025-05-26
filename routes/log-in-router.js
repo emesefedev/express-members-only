@@ -14,7 +14,7 @@ logInRouter.get("/", async (req, res) => {
 logInRouter.post("/", 
   passport.authenticate("local", {
     successRedirect: "/messages",
-    failureRedirect: "/"
+    failureRedirect: "/log-in"
   })
 )
 
