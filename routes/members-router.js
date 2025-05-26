@@ -11,7 +11,7 @@ membersRouter.get("/", isAdmin, async (req, res ) => {
 
 membersRouter.delete("/delete/:id", async (req, res) => {
   const { id } = req.params
-  console.log(id)
+
   try {
     await db.deleteUserByID(id)
 
@@ -24,7 +24,7 @@ membersRouter.delete("/delete/:id", async (req, res) => {
 
 membersRouter.post("/update/:id/:status", async (req, res) => {
   const { id, status } = req.params
-  console.log(id, status)
+  
   try {
     await db.updateUserMembershipStatusByID(id, status)
 

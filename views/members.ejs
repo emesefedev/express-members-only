@@ -62,7 +62,7 @@
   }
 
   async function updateUserMembershipStatus(id, status) {
-    console.log(`frontend ${id}, ${status}`)
+    
     try {
       const response = await fetch(`/members/update/${id}/${status}`, {
         method: 'POST',
